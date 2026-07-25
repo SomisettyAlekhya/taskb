@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why thedailystar.net Feels Slow on Phones — Plain-English Summary</title>
+<meta name="description" content="A plain-English performance review of The Daily Star's mobile homepage: what's slow, what it costs, what to fix first, and a rebuilt section that loads 28x faster.">
+<meta property="og:title" content="Why thedailystar.net Feels Slow on Phones">
+<meta property="og:description" content="A 21 MB mobile homepage that takes 23.7 seconds to show its main image — diagnosed, prioritised, and rebuilt as proof.">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<nav class="topbar"><div class="wrap wide">
+  <a class="brandmark" href="index.html">Mobile Speed Review</a>
+  <div class="nav">
+    <a href="index.html" aria-current="page">Summary</a>
+    <a href="diagnosis.html">Diagnosis</a>
+    <a href="fixes.html">Fix list</a>
+    <a href="results.html">Proof</a>
+    <a href="demo/before/index.html">Before</a>
+    <a href="demo/after/index.html">After</a>
+  </div>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">Client summary &middot; 25 July 2026</div>
+  <h1>Your mobile homepage is asking readers to download 21&nbsp;MB before they can read a headline</h1>
+  <p class="lede">We tested <strong>thedailystar.net</strong> the way a real reader on a mid-range Android phone experiences it. The main picture on the page takes <strong>23.7 seconds</strong> to appear. Below is what's happening, what it costs you, and proof that it is fixable.</p>
+</div></header>
+
+<main class="wrap">
+
+  <div class="scoreboard">
+    <div class="dial"><div class="n bad">26</div><div class="l">Google mobile speed score<br>(out of 100)</div></div>
+    <div class="dial"><div class="n bad">23.7s</div><div class="l">Until the main image appears</div></div>
+    <div class="dial"><div class="n bad">21 MB</div><div class="l">Downloaded per visit</div></div>
+    <div class="dial"><div class="n bad">34.4s</div><div class="l">Until the page reliably responds to taps</div></div>
+  </div>
+  <p class="sans" style="font-size:13.5px;color:var(--muted)">Google Lighthouse 12.8.2, mobile emulation (mid-range Android, 4G). Median of test runs on 25 July 2026.</p>
+
+  <h2>The short version</h2>
+  <p>Three things are wrong, and none of them are about your writing, your servers being "too small", or needing a new website.</p>
+
+  <div class="cards">
+    <div class="tile">
+      <h3>1. Three advertising banners weigh 18 MB</h3>
+      <p>Three animated GIF adverts on the homepage total <strong>18.3&nbsp;MB</strong> &mdash; that is <strong>86% of your entire page</strong>. One banner alone is 6.8&nbsp;MB. On a typical Bangladeshi mobile data plan, a single visit to your homepage can cost a reader real money.</p>
+    </div>
+    <div class="tile">
+      <h3>2. Your main photo is told to wait</h3>
+      <p>The biggest photo on the page is marked "load this later" &mdash; a setting meant for pictures further down the page. So the browser queues it behind everything else, including those 18&nbsp;MB of adverts. <strong>72% of the 23.7-second wait is the photo simply sitting in a queue.</strong></p>
+    </div>
+    <div class="tile">
+      <h3>3. The page is assembled from 288 separate pieces</h3>
+      <p>Every visit fetches <strong>74 style files and 52 scripts</strong>. The browser must stop and wait for the style files before it can draw anything, and the advertising and tracking scripts then freeze the page for nearly <strong>4 seconds</strong> of tapping and scrolling that goes nowhere.</p>
+    </div>
+  </div>
+
+  <h2>What it costs you</h2>
+  <p>Speed is not a vanity metric for a news site. It maps directly onto money:</p>
+  <ul class="clean">
+    <li><strong>Readers leave before the page loads.</strong> Google's own research puts bounce risk up sharply past three seconds. You are at twenty-three.</li>
+    <li><strong>Adverts that never get seen are not paid for.</strong> Slow pages mean fewer viewable impressions, which lowers what advertisers will pay per thousand.</li>
+    <li><strong>Google ranks slow mobile pages lower.</strong> Core Web Vitals are a live ranking signal, and the page fails all the loading ones.</li>
+    <li><strong>Data cost is a real barrier.</strong> 21&nbsp;MB a visit prices out exactly the mobile-first audience a national daily needs to grow.</li>
+  </ul>
+
+  <h2>The good news: we proved the fix</h2>
+  <p>Rather than just hand over a list, we rebuilt the "Top Stories" section of your homepage &mdash; same nine articles, same photographs, same layout, same advert slot &mdash; using the techniques we're recommending. Then we measured both versions under identical conditions.</p>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>What the reader experiences</th><th>Current build</th><th>Rebuilt</th><th>Change</th></tr></thead>
+      <tbody>
+        <tr><td>Google speed score</td><td class="num loss">45 / 100</td><td class="num win">100 / 100</td><td class="num">&plus;55 points</td></tr>
+        <tr><td>Main image appears</td><td class="num loss">38.0 s</td><td class="num win">1.4 s</td><td class="num">28&times; faster</td></tr>
+        <tr><td>Page frozen &amp; unresponsive</td><td class="num loss">3.4 s</td><td class="num win">0 s</td><td class="num">Eliminated</td></tr>
+        <tr><td>Data downloaded</td><td class="num loss">7,634 KB</td><td class="num win">133 KB</td><td class="num">98% less</td></tr>
+        <tr><td>Separate files fetched</td><td class="num loss">49</td><td class="num win">9</td><td class="num">82% fewer</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout good">
+    <p><strong>Nothing was removed to achieve this.</strong> Same nine stories, same images, same animated advert, same tracking workload. Only the delivery changed.</p>
+  </div>
+
+  <div class="btnrow">
+    <a class="btn danger" href="demo/before/index.html">See the "before" page</a>
+    <a class="btn primary" href="demo/after/index.html">See the rebuilt page</a>
+    <a class="btn" href="results.html">Full measurements</a>
+  </div>
+
+  <h2>What we'd do first</h2>
+  <p>We ordered every fix by how much a reader would feel it against how much work it takes. Three of them are a few hours of work and account for almost all of the gain:</p>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Fix</th><th>Effort</th><th>What the reader gains</th></tr></thead>
+      <tbody>
+        <tr><td>Convert the three GIF adverts to video files</td><td>2&ndash;3 hours</td><td class="num win">18 MB lighter, ~15 s faster</td></tr>
+        <tr><td>Stop telling the top photo to load last</td><td>1 hour</td><td class="num win">~12&ndash;17 s faster</td></tr>
+        <tr><td>Delay advertising &amp; tracking scripts until after the page draws</td><td>1 day</td><td class="num win">Page stops freezing</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>We are also explicit about what we would <strong>not</strong> spend your budget on &mdash; four commonly-recommended "fixes" here are worth less than a second between them. That reasoning is on the <a href="fixes.html">fix list</a>.</p>
+
+  <h2>Recommended next step</h2>
+  <p>Fixes 1 and 2 are configuration changes, not a rebuild. A single developer can ship both inside a day, and readers would notice the same afternoon. We suggest doing exactly that, measuring for a week, and then deciding on the advertising-script work with real numbers in hand.</p>
+
+  <div class="callout note">
+    <p class="sans" style="font-size:14px;margin:0"><strong>Scope note:</strong> this is an unsolicited, independent case study of a publicly accessible website, produced as a training exercise. We have no relationship with The Daily Star, made no changes to their site, and reproduce their headlines and images only to demonstrate the technique.</p>
+  </div>
+
+</main>
+
+<footer class="site"><div class="wrap wide">
+  <p class="credit">Built for <a href="https://digitalheroesco.com" rel="noopener">Digital Heroes Training Task</a></p>
+  <p>Independent mobile performance case study of thedailystar.net &middot; Lighthouse 12.8.2 &middot; 25 July 2026. All trademarks, headlines and photographs remain the property of their respective owners and are reproduced solely for technical demonstration.</p>
+</div></footer>
+
+</body>
+</html>
